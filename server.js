@@ -1,8 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const PORT = process.env.PORT || 3001;
 const { animals } = require('./data/animals');
+
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 // parse incoming string or array data
@@ -96,10 +97,6 @@ app.get('/api/animals/:id', (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`API server now on port ${PORT}!`);
-});
-
 app.post('/api/animals', (req, res) => {
     // set id based on what the next index of the array will be
     req.body.id = animals.length.toString();
@@ -113,6 +110,12 @@ app.post('/api/animals', (req, res) => {
         res.json(animal);
     }
 });
+
+app.listen(PORT, () => {
+    console.log(`API server now on port ${PORT}!`);
+});
+
+// https://agile-inlet-41097.herokuapp.com/api/animals 
 
 
 
